@@ -36,25 +36,25 @@ public class StudentService {
 	    
 
 	    public void enrollStudents( String courseName, String studentID )
-	    {
-	    	try {
-	    	Course course = courseList.get( courseName );
-	    	} catch(CourseNotFoundException ex) {
-	    		System.out.println("El curso no se encuentra");
-	    	}
+	    throws CourseNotFoundException, StudentNotFoundException{
 	    	
-	    	try {
-	        if ( !coursesEnrolledByStudents.containsKey( studentID ) )
-	        {
-	            coursesEnrolledByStudents.put( studentID, new ArrayList<>() );
-	        }
-	        coursesEnrolledByStudents.get( studentID ).add( course );
-	    	}catch(StudentNotFoundException ex) {
-	    		
-	    		System.out.println("El estudiante no se encuentra enlistado");
-	    		
-	    	}
-	        
+	    	
+	       if(!courseList.containsKey(courseName)) {
+	    	  throw new CourseNotFoundException(courseName);
+	       }
+	       
+	       if(!students.containsKey(studentID)) {
+		       throw new StudentNotFoundException(studentID);
+		   }
+	    	
+	    	
+	    	Course course = courseList.get( courseName );
+		    	
+			if ( !coursesEnrolledByStudents.containsKey( studentID ) )
+			  {
+			     coursesEnrolledByStudents.put( studentID, new ArrayList<>() );
+			  }
+			     coursesEnrolledByStudents.get( studentID ).add( course );	        
 	    }
 
 	    public void unEnrollStudents( String courseName, String studentID )

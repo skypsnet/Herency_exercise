@@ -2,6 +2,8 @@ package org.herencyexercise.main;
 
 import org.herencyexercise.classes.Student;
 import org.herencyexercise.classes.StudentService;
+import org.herencyexercise.exceptions.CourseNotFoundException;
+import org.herencyexercise.exceptions.StudentNotFoundException;
 
 public class Main {
 
@@ -16,8 +18,6 @@ public class Main {
         studentService.putStudent("1020", new Student( "Santiago", "1020", 33 ));
         
 
-        studentService.enrollStudents( "Math", "1030" );
-		
 	}
 	
 }
